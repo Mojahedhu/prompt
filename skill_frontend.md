@@ -20,7 +20,8 @@ src/
  ├── app/              # Routing, Layouts, and Entry points (Next.js specific)
  ├── features/         # Feature modules (e.g., /auth, /checkout, /dashboard)
  │    └── [feature]/   # Co-located components, hooks, utils, and domain logic
- ├── shared/           # Cross-feature reusable abstractions
+ ├── core/             # App-wide setup (store provider, theme)
+ ├── shared/           # Cross-feature reusable abstractions (Universal UI components, utils, and hooks)
  │    ├── ui/          # Dumb components (Buttons, Inputs)
  │    ├── lib/         # Utility functions, API clients
  │    └── types/       # Global TypeScript declarations
@@ -59,12 +60,12 @@ TypeScript is our primary static analysis tool. `any` is strictly prohibited.
 
 State is categorized and isolated based on its lifecycle and persistence requirements.
 
-| State Type          | Responsibility                    | Approved Tooling                          | Anti-Pattern                             |
-| ------------------- | --------------------------------- | ----------------------------------------- | ---------------------------------------- |
-| **Server State**    | Async data, caching, revalidation | Next.js Cache, React Query, SWR           | Storing API responses in Redux/Zustand   |
-| **Global UI State** | Theme, cross-feature UI state     | Zustand, React Context (if low frequency) | Prop-drilling 5+ levels deep             |
-| **Local State**     | Form inputs, toggles, active tabs | `useState`, `useReducer`                  | Elevating local state to Global State    |
-| **URL State**       | Pagination, filters, search       | Next.js `useSearchParams`, `nuqs`         | Syncing URL state to `useState` manually |
+| State Type          | Responsibility                    | Approved Tooling                               | Anti-Pattern                             |
+| ------------------- | --------------------------------- | ---------------------------------------------- | ---------------------------------------- |
+| **Server State**    | Async data, caching, revalidation | Next.js Cache, React Query, SWR                | Storing API responses in Redux/Zustand   |
+| **Global UI State** | Theme, cross-feature UI state     | Zustand, React Context (if low frequency)      | Prop-drilling 5+ levels deep             |
+| **Local State**     | Form inputs, toggles, active tabs | `useState`, `useReducer`                       | Elevating local state to Global State    |
+| **URL State**       | Pagination, filters, search       | Next.js `useSearchParams`, `useParams`, `nuqs` | Syncing URL state to `useState` manually |
 
 ---
 

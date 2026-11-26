@@ -91,3 +91,7 @@ This is highly popular in UI libraries like Radix or Headless UI. It allows you 
 ```
 
 Here, the user of the `Menu` has complete control over the layout and ordering of the items, while the internal logic (like knowing when the dropdown is open) is handled secretly behind the scenes.
+
+### 5. Keep boundaries & state clear (the missing piece):
+
+Define clear prop contracts, isolate error/loading states so one bug does not crash the screen, and keep state close to where it is actually used.
